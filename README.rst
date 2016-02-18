@@ -22,7 +22,9 @@ TODO
 ----
 
 [x]  latency check with ICMP
+
 [ ]  download speed measurement
+
 [ ]  upload speed measurement
 
 LICENSE
