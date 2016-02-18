@@ -15,6 +15,9 @@ USAGE
 
 .. image:: https://raw.githubusercontent.com/dizballanze/do-latency/master/usage.gif
 
+-  *-h, --help* - show help
+-  *--ping-count* - count of ICMP requests for latency check (default: 10)
+
 LICENSE
 -------
 

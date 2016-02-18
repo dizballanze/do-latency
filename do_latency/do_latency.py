@@ -20,11 +20,10 @@ REGIONS = {
     'lon1': 'speedtest-lon1.digitalocean.com',
     'fra1': 'speedtest-fra1.digitalocean.com',
 }
-TESTS_COUNT = 10
 BAR_FORMAT = "{desc}|{bar}|{percentage:3.0f}%"
 
 
-def start_test(ping_count=TESTS_COUNT):
+def start_test(ping_count=10):
     results = {key: [] for key in REGIONS}
     pbar = tqdm(total=(len(REGIONS) * ping_count), desc="Latency testing", bar_format=BAR_FORMAT, leave=True)
     for region, host in REGIONS.iteritems():
@@ -40,7 +39,7 @@ def start_test(ping_count=TESTS_COUNT):
 
 def main():
     parser = argparse.ArgumentParser(description="Digital Ocean regions latency checking tool.")
-    parser.add_argument("--ping-count", help='Count of ICMP requests for latency check', type=int, default=TESTS_COUNT)
+    parser.add_argument("--ping-count", help='Count of ICMP requests for latency check (default: %(default)s)', type=int, default=10)
     args = parser.parse_args()
     start_test(**args.__dict__)
 

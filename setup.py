@@ -33,5 +33,5 @@ setup(
         'Programming Language :: Python :: 2.6',
         'Programming Language :: Python :: 2.7',
     ],
-    keywords='digital ocean latency ping connection speed'
+    keywords='digital ocean latency ping connection speed ICMP'
 )
