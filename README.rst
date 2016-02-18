@@ -15,8 +15,15 @@ USAGE
 
 .. image:: https://raw.githubusercontent.com/dizballanze/do-latency/master/usage.gif
 
--  *-h, --help* - show help
--  *--ping-count* - count of ICMP requests for latency check (default: 10)
+-  **-h, --help** - show help
+-  **--ping-count** - count of ICMP requests for latency check (default: 10)
+
+TODO
+----
+
+[x]  latency check with ICMP
+[ ]  download speed measurement
+[ ]  upload speed measurement
 
 LICENSE
 -------
