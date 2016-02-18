@@ -1,0 +1,6 @@
+venv/
+.DS_Store
+*.swp
+*.egg-info
+*.png
+*.pyc
