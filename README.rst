@@ -13,6 +13,8 @@ INSTALLATION
 USAGE
 -----
 
+.. image:: https://raw.githubusercontent.com/dizballanze/do-latency/master/usage.gif
+
 LICENSE
 -------
 
