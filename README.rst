@@ -17,13 +17,14 @@ USAGE
 
 -  **-h, --help** - show help
 -  **--ping-count** - count of ICMP requests for latency check (default: 10)
+-  **--file-size {10mb, 100mb}** - size of downloaded file (default: 10mb). 
 
 TODO
 ----
 
 [x]  latency check with ICMP
 
-[ ]  download speed measurement
+[x]  download speed measurement
 
 [ ]  upload speed measurement
 
