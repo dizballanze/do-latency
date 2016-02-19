@@ -6,6 +6,7 @@ from tqdm import tqdm
 from terminaltables import AsciiTable
 
 from ping import do_ping
+from download import do_download
 
 
 REGIONS = {
@@ -20,26 +21,36 @@ REGIONS = {
     'lon1': 'speedtest-lon1.digitalocean.com',
     'fra1': 'speedtest-fra1.digitalocean.com',
 }
-BAR_FORMAT = "{desc}|{bar}|{percentage:3.0f}%"
+BAR_FORMAT = "{desc}|{bar}|{percentage:3.2f}%"
+PADDING_FORMAT = "{:>30}"
 
 
-def start_test(ping_count=10):
+def start_test(ping_count=10, file_size="10mb"):
     results = {key: [] for key in REGIONS}
-    pbar = tqdm(total=(len(REGIONS) * ping_count), desc="Latency testing", bar_format=BAR_FORMAT, leave=True)
+    # Latency testing
+    pbar = tqdm(total=(len(REGIONS) * ping_count), desc=PADDING_FORMAT.format("Latency testing"), bar_format=BAR_FORMAT, leave=True)
     for region, host in REGIONS.iteritems():
-        pbar.set_description("Latency testing ({})".format(region))
+        pbar.set_description(PADDING_FORMAT.format("Latency testing ({})".format(region)))
         results[region].append(do_ping(host, count=ping_count, udp=True, hook=lambda: pbar.update(1)))
     pbar.close()
+    # Download speed testing
+    pbar = tqdm(total=(len(REGIONS) * 100), desc=PADDING_FORMAT.format("Download speed testing"), bar_format=BAR_FORMAT, leave=True, disable=False)
+    for region, host in REGIONS.iteritems():
+        pbar.set_description(PADDING_FORMAT.format("Download speed testing ({})".format(region)))
+        url = "http://{}/{}.test".format(host, file_size)
+        results[region].append(do_download(url, lambda progress: pbar.update(progress)))
+    # Output sorted by latency results as table
     table_data = [[key] + value for key, value in results.iteritems()]
     table_data.sort(key=lambda row: float(row[1]))
-    table_data.insert(0, ["Region", "Latency (ms)"])
+    table_data.insert(0, ["Region", "Latency (ms)", "Download speed (mbps)"])
     table = AsciiTable(table_data)
-    print("\n{}\n".format( table.table))
+    print("\n\n{}\n".format( table.table))
 
 
 def main():
     parser = argparse.ArgumentParser(description="Digital Ocean regions latency checking tool.")
     parser.add_argument("--ping-count", help='Count of ICMP requests for latency check (default: %(default)s)', type=int, default=10)
+    parser.add_argument("--file-size", help='File size for download speed test (default: %(default)s)', type=str, default="10mb", choices=("10mb", "100mb"))
     args = parser.parse_args()
     start_test(**args.__dict__)
 
