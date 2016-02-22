@@ -18,6 +18,7 @@ USAGE
 -  **-h, --help** - show help
 -  **--ping-count** - count of ICMP requests for latency check (default: 10)
 -  **--file-size {10mb, 100mb}** - size of downloaded file (default: 10mb). 
+-  **--udp** - use UDP not ICMP.
 
 TODO
 ----
