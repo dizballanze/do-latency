@@ -25,13 +25,13 @@ BAR_FORMAT = "{desc}|{bar}|{percentage:3.2f}%"
 PADDING_FORMAT = "{:>30}"
 
 
-def start_test(ping_count=10, file_size="10mb"):
+def start_test(ping_count=10, file_size="10mb", udp=False):
     results = {key: [] for key in REGIONS}
     # Latency testing
     pbar = tqdm(total=(len(REGIONS) * ping_count), desc=PADDING_FORMAT.format("Latency testing"), bar_format=BAR_FORMAT, leave=True)
     for region, host in REGIONS.iteritems():
         pbar.set_description(PADDING_FORMAT.format("Latency testing ({})".format(region)))
-        results[region].append(do_ping(host, count=ping_count, udp=True, hook=lambda: pbar.update(1)))
+        results[region].append(do_ping(host, count=ping_count, udp=udp, hook=lambda: pbar.update(1)))
     pbar.close()
     # Download speed testing
     pbar = tqdm(total=(len(REGIONS) * 100), desc=PADDING_FORMAT.format("Download speed testing"), bar_format=BAR_FORMAT, leave=True, disable=False)
@@ -51,6 +51,7 @@ def main():
     parser = argparse.ArgumentParser(description="Digital Ocean regions latency checking tool.")
     parser.add_argument("--ping-count", help='Count of ICMP requests for latency check (default: %(default)s)', type=int, default=10)
     parser.add_argument("--file-size", help='File size for download speed test (default: %(default)s)', type=str, default="10mb", choices=("10mb", "100mb"))
+    parser.add_argument('--udp', dest='udp', action='store_true', help="Use UDP not ICMP") 
     args = parser.parse_args()
     start_test(**args.__dict__)
 
