@@ -18,7 +18,7 @@ setup(
     author_email='dizballanze@gmail.com',
     packages=['do_latency'],
     # scripts=[],
-    url='https://github.com/dizballanze/do_latency',
+    url='https://github.com/dizballanze/do-latency',
     license='MIT',
     description='Digital Ocean latency checker helps to find fastest DO region from your location.',
     long_description=read('README.rst'),
