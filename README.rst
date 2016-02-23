@@ -1,6 +1,9 @@
 Digital Ocean latency checker
 =============================
 
+.. image:: https://badge.fury.io/py/do-latency.svg
+    :target: https://badge.fury.io/py/do-latency
+
 Digital Ocean latency checker helps to find fastest DO region from your location.
 
 INSTALLATION
