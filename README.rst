@@ -29,6 +29,8 @@ TODO
 
 [ ]  upload speed measurement
 
+[ ]  python 3 support
+
 LICENSE
 -------
 
