@@ -1,8 +1,41 @@
 Digital Ocean latency checker
 =============================
 
-.. image:: https://badge.fury.io/py/do-latency.svg
-    :target: https://badge.fury.io/py/do-latency
+.. image:: http://badge.kloud51.com/pypi/v/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Version
+
+.. image:: http://badge.kloud51.com/pypi/w/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Wheel
+
+.. image:: http://badge.kloud51.com/pypi/s/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Status
+
+.. image:: http://badge.kloud51.com/pypi/l/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI License
+
+.. image:: http://badge.kloud51.com/pypi/f/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Format
+
+.. image:: http://badge.kloud51.com/pypi/p/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Py_versions
+
+.. image:: http://badge.kloud51.com/pypi/d/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Downloads
+
+.. image:: http://badge.kloud51.com/pypi/i/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Implementation
+
+.. image:: http://badge.kloud51.com/pypi/e/do-latency.svg
+    :target: https://pypi.python.org/pypi/do-latency
+    :alt: PyPI Egg
 
 Digital Ocean latency checker helps to find fastest DO region from your location.
 
