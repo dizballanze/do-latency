@@ -1,5 +1,6 @@
 venv/
 venv3/
+.tox/
 .DS_Store
 *.swp
 *.egg-info
