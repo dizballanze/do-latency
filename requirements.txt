@@ -1,3 +1,2 @@
-pyping==0.0.4
 terminaltables==2.1.0
 tqdm==3.8.0

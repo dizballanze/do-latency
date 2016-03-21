@@ -27,4 +27,4 @@ def do_download(url, hook=None):
                 status_downloaded = ((float(progress) - int(progress)) / 100) * file_size
     speed = ((file_size * 8) / (1024 * 1024)) / (time.time() - start_time)
     http_handler.close()
-    return "{:.3f}".format(speed)
+    return "{:06.3f}".format(speed)
