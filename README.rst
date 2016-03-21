@@ -56,7 +56,7 @@ USAGE
 -  **--file-size {10mb, 100mb}** - size of downloaded file (default: 10mb). 
 -  **--udp** - use UDP not ICMP.
 
-**In some linux systems UDP testing does not work, so you should use true ICMP and run `do-latency` from root:***
+**In some linux systems UDP testing does not work, so you should use true ICMP and run `do-latency` from root:**
 
 ::
 
