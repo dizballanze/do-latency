@@ -11,6 +11,9 @@ def read(fname):
 version = re.search('^__version__\s*=\s*"(.*)"',
                     open('do_latency/__init__.py').read(), re.M).group(1)
 
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
+
 setup(
     name='do-latency',
     version=version,
@@ -22,7 +25,7 @@ setup(
     license='MIT',
     description='Digital Ocean latency checker helps to find fastest DO region from your location.',
     long_description=read('README.rst'),
-    install_requires=['pyping==0.0.4', 'terminaltables==2.1.0', 'tqdm==3.8.0'],
+    install_requires=required,
     data_files=[('', ['LICENSE', 'README.rst'])],
     entry_points={
         "console_scripts": ['do-latency = do_latency.do_latency:main']

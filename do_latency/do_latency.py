@@ -6,8 +6,8 @@ from tqdm import tqdm
 from terminaltables import AsciiTable
 import six
 
-from ping import do_ping
-from download import do_download
+from .ping import do_ping
+from .download import do_download
 
 
 REGIONS = {

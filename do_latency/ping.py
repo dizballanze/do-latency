@@ -1,6 +1,6 @@
 import time
 
-from pyping import ping
+from .pyping import ping
 
 
 def do_ping(host, count=10, timeout=10, udp=False, hook=None):
