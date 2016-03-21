@@ -4,6 +4,7 @@ import argparse
 
 from tqdm import tqdm
 from terminaltables import AsciiTable
+import six
 
 from ping import do_ping
 from download import do_download
@@ -29,18 +30,18 @@ def start_test(ping_count=10, file_size="10mb", udp=False):
     results = {key: [] for key in REGIONS}
     # Latency testing
     pbar = tqdm(total=(len(REGIONS) * ping_count), desc=PADDING_FORMAT.format("Latency testing"), bar_format=BAR_FORMAT, leave=True)
-    for region, host in REGIONS.iteritems():
+    for region, host in six.iteritems(REGIONS):
         pbar.set_description(PADDING_FORMAT.format("Latency testing ({})".format(region)))
         results[region].append(do_ping(host, count=ping_count, udp=udp, hook=lambda: pbar.update(1)))
     pbar.close()
     # Download speed testing
     pbar = tqdm(total=(len(REGIONS) * 100), desc=PADDING_FORMAT.format("Download speed testing"), bar_format=BAR_FORMAT, leave=True, disable=False)
-    for region, host in REGIONS.iteritems():
+    for region, host in six.iteritems(REGIONS):
         pbar.set_description(PADDING_FORMAT.format("Download speed testing ({})".format(region)))
         url = "http://{}/{}.test".format(host, file_size)
         results[region].append(do_download(url, lambda progress: pbar.update(progress)))
     # Output sorted by latency results as table
-    table_data = [[key] + value for key, value in results.iteritems()]
+    table_data = [[key] + value for key, value in six.iteritems(results)]
     table_data.sort(key=lambda row: float(row[1]))
     table_data.insert(0, ["Region", "Latency (ms)", "Download speed (mbps)"])
     table = AsciiTable(table_data)

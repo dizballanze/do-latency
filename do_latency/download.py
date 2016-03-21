@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-import urllib2
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
 import time
 
 
@@ -11,8 +14,7 @@ def do_download(url, hook=None):
     Downloads file and returns speed in mbps.
     """
     http_handler = urllib2.urlopen(url)
-    headers = http_handler.info()
-    file_size = int(headers.getheaders("Content-Length")[0])
+    file_size = int(http_handler.headers["Content-Length"])
     start_time = time.time()
     status_downloaded = 0
     while True:
