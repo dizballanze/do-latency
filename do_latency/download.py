@@ -14,7 +14,7 @@ def do_download(url, hook=None):
     Downloads file and returns speed in mbps.
     """
     http_handler = urllib2.urlopen(url)
-    file_size = int(http_handler.headers["Content-Length"])
+    file_size = float(http_handler.headers["Content-Length"])
     start_time = time.time()
     status_downloaded = 0
     while True:
