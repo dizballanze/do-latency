@@ -21,6 +21,7 @@ REGIONS = {
     'sgp1': 'speedtest-sgp1.digitalocean.com',
     'lon1': 'speedtest-lon1.digitalocean.com',
     'fra1': 'speedtest-fra1.digitalocean.com',
+    'blr1': 'speedtest-blr1.digitalocean.com'
 }
 BAR_FORMAT = "{desc}|{bar}|{percentage:3.2f}%"
 PADDING_FORMAT = "{:>30}"
