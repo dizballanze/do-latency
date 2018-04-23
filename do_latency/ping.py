@@ -9,4 +9,4 @@ def do_ping(host, count=10, timeout=10, udp=False, hook=None):
         results.append(ping(host, timeout, udp=udp))
         if hook is not None:
             hook()
-    return "{:.3f}".format(sum(results) / count)
+    return "{:.3f}".format(sum([result for result in results if result is not None]) / count)
