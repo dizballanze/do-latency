@@ -18,6 +18,7 @@ REGIONS = {
     'ams2': 'speedtest-ams2.digitalocean.com',
     'ams3': 'speedtest-ams3.digitalocean.com',
     'sfo1': 'speedtest-sfo1.digitalocean.com',
+    'sfo2': 'speedtest-sfo2.digitalocean.com',
     'sgp1': 'speedtest-sgp1.digitalocean.com',
     'lon1': 'speedtest-lon1.digitalocean.com',
     'fra1': 'speedtest-fra1.digitalocean.com',
@@ -40,13 +41,20 @@ def start_test(ping_count=10, file_size="10mb", udp=False):
     for region, host in six.iteritems(REGIONS):
         pbar.set_description(PADDING_FORMAT.format("Download speed testing ({})".format(region)))
         url = "http://{}/{}.test".format(host, file_size)
-        results[region].append(do_download(url, lambda progress: pbar.update(progress)))
+        results[region].append(do_download(url, lambda progress, message=None: update_pbar(pbar, progress, message)))
     # Output sorted by latency results as table
     table_data = [[key] + value for key, value in six.iteritems(results)]
     table_data.sort(key=lambda row: float(row[1]))
     table_data.insert(0, ["Region", "Latency (ms)", "Download speed (mbps)"])
     table = AsciiTable(table_data)
     print("\n\n{}\n".format( table.table))
+
+
+def update_pbar(pbar, progress=None, message=None):
+    if progress is not None:
+        pbar.update(progress)
+    if message is not None:
+        tqdm.write(message)
 
 
 def main():
