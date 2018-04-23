@@ -13,7 +13,12 @@ def do_download(url, hook=None):
     """
     Downloads file and returns speed in mbps.
     """
-    http_handler = urllib2.urlopen(url)
+    returnFormat = "{:06.3f}"
+    try:
+        http_handler = urllib2.urlopen(url)
+    except httplib.HTTPException, e:
+        print "An error ({}, {}) occurred during opening '{}'".format(e.code, e.reason, url)
+        return returnFormat.format(0)
     file_size = float(http_handler.headers["Content-Length"])
     start_time = time.time()
     status_downloaded = 0
@@ -29,4 +34,4 @@ def do_download(url, hook=None):
                 status_downloaded = ((float(progress) - int(progress)) / 100) * file_size
     speed = ((file_size * 8) / (1024 * 1024)) / (time.time() - start_time)
     http_handler.close()
-    return "{:06.3f}".format(speed)
+    return returnFormat.format(speed)
