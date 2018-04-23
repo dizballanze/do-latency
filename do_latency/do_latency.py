@@ -41,7 +41,7 @@ def start_test(ping_count=10, file_size="10mb", udp=False):
     for region, host in six.iteritems(REGIONS):
         pbar.set_description(PADDING_FORMAT.format("Download speed testing ({})".format(region)))
         url = "http://{}/{}.test".format(host, file_size)
-        results[region].append(do_download(url, lambda progress, message: update_pbar(pbar, progress, message)))
+        results[region].append(do_download(url, lambda progress, message=None: update_pbar(pbar, progress, message)))
     # Output sorted by latency results as table
     table_data = [[key] + value for key, value in six.iteritems(results)]
     table_data.sort(key=lambda row: float(row[1]))
@@ -54,7 +54,7 @@ def update_pbar(pbar, progress=None, message=None):
     if progress is not None:
         pbar.update(progress)
     if message is not None:
-        pbar.write(message)
+        tqdm.write(message)
 
 
 def main():

@@ -20,7 +20,7 @@ def do_download(url, hook=None):
         http_handler = urllib2.urlopen(url)
     except URLError, e:
         if hook is not None:
-            hook(None, "\n'{}': {}".format(url, e.reason))
+            hook(None, "'{}': {}".format(url, e.reason))
         return returnFormat.format(0)
     file_size = float(http_handler.headers["Content-Length"])
     start_time = time.time()
