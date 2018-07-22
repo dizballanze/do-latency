@@ -18,7 +18,7 @@ def do_download(url, hook=None):
     returnFormat = "{:06.3f}"
     try:
         http_handler = urllib2.urlopen(url)
-    except URLError, e:
+    except URLError as e:
         if hook is not None:
             hook(None, "'{}': {}".format(url, e.reason))
         return returnFormat.format(0)
